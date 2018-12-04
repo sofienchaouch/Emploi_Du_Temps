@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/app_bar_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:actionViewClass="android.widget.SearchView" />
+    <item
+        android:title="Depatement Informatique Industrielle "
+        app:showAsAction="always" />
+    <group android:checkableBehavior="single"><![CDATA[
+
+            />
+
+        ]]>
+        <item
+            android:id="@+id/nav_mur"
+            android:title="Mon Mur" />
+        <item
+            android:id="@+id/nav_bureau"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Bureau" />
+        <item
+            android:id="@+id/nav_agenda"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Agenda">
+            <menu>
+                <item
+
+                    android:title="Emploi Par Groupe"
+                    android:id="@+id/emploi_par_groupe"
+
+                    />
+
+            </menu>
+
+
+
+         </item>
+
+
+        <item
+            android:id="@+id/nav_contacts"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Contacts" />
+        <item android:title="Documents" />
+        <item android:title="Educations" />
+        <item android:title="Social" />
+    </group>
+
+</menu>

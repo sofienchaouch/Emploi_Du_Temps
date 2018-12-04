@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Emploi_Du_Temps</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="lundi">LUN</string>
+    <string name="mardi">MAR</string>
+    <string name="mercredi">MER</string>
+    <string name="jeudi">JEU</string>
+    <string name="vendredi">VEN</string>
+    <string name="samedi">SAM</string>
+    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="item1">Item1</string>
+    <string name="item2">Item2</string>
+    <string name="search">Search</string>
+    <string name="title_activity_en__emploi_">En_Emploi_Activity</string>
+    <string name="title_activity_en__lundi">En_Lundi</string>
+    <string name="title_activity_en__mardi">En_Mardi</string>
+    <string name="title_activity_en__mercredi">En_Mercredi</string>
+    <string name="title_activity_en__jeudi">En_Jeudi</string>
+    <string name="title_activity_en__samedi">En_Samedi</string>
+    <string name="title_activity_en__vendredi">En_Vendredi</string>
+    <string name="title_activity_gr_">Gr_Activity</string>
+    <string name="title_activity_gr__lundi">Gr_Lundi</string>
+    <string name="title_activity_gr__mardi">Gr_Mardi</string>
+    <string name="title_activity_gr__mercredi">Gr_Mercredi</string>
+    <string name="title_activity_gr__jeudi">Gr_Jeudi</string>
+    <string name="title_activity_gr__vendredi">Gr_Vendredi</string>
+    <string name="title_activity_gr__samedi">Gr_Samedi</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+
+</resources>
