@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.babayaga.emploi_du_temps.Day;
+import com.example.babayaga.emploi_du_temps.Emploi_Par_Groupe.Gr_Activity;
 import com.example.babayaga.emploi_du_temps.Login;
 import com.example.babayaga.emploi_du_temps.R;
 import com.example.babayaga.emploi_du_temps.Session;
@@ -56,7 +57,7 @@ public class Gr_Mardi extends Fragment {
 
     public void getdata() {
         String url = "http://eniso.info/ws/core/wscript?s=Return(bean('core').getPluginsAPI())";
-        String url2 = "http://eniso.info/ws/core/wscript?s=Return(bean(%22academicPlanning%22).loadClassPlanning(%22IA2.2.1%22))";
+        String url2 = "http://eniso.info/ws/core/wscript?s=Return(bean(%22academicPlanning%22).loadClassPlanning(%22"+Gr_Activity.name+"%22))";
 
 
         JsonObjectRequest req = new JsonObjectRequest(com.android.volley.Request.Method.GET, url2, null,

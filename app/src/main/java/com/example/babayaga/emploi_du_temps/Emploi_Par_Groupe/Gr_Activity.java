@@ -57,8 +57,7 @@ public class Gr_Activity extends AppCompatActivity {
     public ArrayList<String> ids = new ArrayList<>();
     public ArrayList<String> names = new ArrayList<>();
     public RequestQueue mQueue;
-    int selected ;
-    String n = "" ;
+    public static String name  ;
     private Context context;
     private static final String TAG = "Gr_Activity";
     private SectionPageAdapter Gr_SectionPageAdapter;
@@ -75,10 +74,14 @@ public class Gr_Activity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.gr_container);
         setupViewPager(mViewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.gr_tabs);
+
+
         tabLayout.setupWithViewPager(mViewPager);
         mQueue = Volley.newRequestQueue(getApplicationContext());
-
-        getdata();
+        Bundle extra = getIntent().getExtras();
+        name = extra.getString("name");
+        getSupportActionBar().setTitle("Emplois Par Groupe : "+name);
+        //getdata();
 
 
 
@@ -117,7 +120,7 @@ public class Gr_Activity extends AppCompatActivity {
                             JSONObject ob = i.getJSONObject(5);
                             String id = ob.getString("id");
                             String name = ob.getString("name");
-                            n = name;
+
                             /*for (int j = 0; j <i.length() ; j++) {
                                 ob = i.getJSONObject(j);
                                 id = ob.getString("id");
@@ -169,28 +172,5 @@ public class Gr_Activity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.menu_gr_,menu);
-        //menu.add(0,3,0,"email");
-        //getdata();
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_gr_, menu);
-        //menu.add("hello");
-        //getdata();
-        menu.add(n+"hello");
-        /*for (int i = 0; i <ids.size() ; i++) {
-            menu.add(ids.get(i));
-        }*/
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        selected = item.getItemId();
-
-
-        return true;
-    }
 
 }

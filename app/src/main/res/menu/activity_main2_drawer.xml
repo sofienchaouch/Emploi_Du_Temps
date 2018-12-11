@@ -9,9 +9,6 @@
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Search"
         app:actionViewClass="android.widget.SearchView" />
-    <item
-        android:title="Depatement Informatique Industrielle "
-        app:showAsAction="always" />
     <group android:checkableBehavior="single"><![CDATA[
 
             />
@@ -21,20 +18,22 @@
             android:id="@+id/nav_mur"
             android:title="Mon Mur" />
         <item
-            android:id="@+id/nav_bureau"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Bureau" />
-        <item
             android:id="@+id/nav_agenda"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Agenda">
             <menu>
                 <item
+                    android:id="@+id/mon_em_item"
+                    android:title="Mon Emploi" />
+                <item
 
+                    android:id="@+id/groupe_em_item"
                     android:title="Emploi Par Groupe"
-                    android:id="@+id/emploi_par_groupe"
 
                     />
+                <item
+                    android:id="@+id/enseignant_emp_item"
+                    android:title="Emploi par Enseignant" />
 
             </menu>
 
@@ -43,13 +42,6 @@
          </item>
 
 
-        <item
-            android:id="@+id/nav_contacts"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Contacts" />
-        <item android:title="Documents" />
-        <item android:title="Educations" />
-        <item android:title="Social" />
     </group>
 
 </menu>

@@ -1,4 +1,5 @@
 package com.example.babayaga.emploi_du_temps.Emploi_Par_Enseignant.En_Days_Frag;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -42,6 +43,8 @@ public class En_Emploi_Activity extends AppCompatActivity {
 
     private SectionPageAdapter En_SectionPageAdapter;
 
+    public static int id ;
+    public  static  String name;
 
     private ViewPager mViewPager;
 
@@ -56,9 +59,14 @@ public class En_Emploi_Activity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.en_container);
         setupViewPager(mViewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.en_tabs);
+
+
         tabLayout.setupWithViewPager(mViewPager);
 
-
+        Bundle extra = getIntent().getExtras();
+        id = extra.getInt("id");
+        name = extra.getString("name");
+        getSupportActionBar().setTitle("Emplois Par Enseignant : "+name);
     }
 
     private void setupViewPager(ViewPager viewPager){

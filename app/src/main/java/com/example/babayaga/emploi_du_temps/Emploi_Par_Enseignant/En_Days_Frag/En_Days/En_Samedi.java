@@ -20,6 +20,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.babayaga.emploi_du_temps.Emploi_Par_Enseignant.En_Days_Frag.En_Emploi_Activity;
 import com.example.babayaga.emploi_du_temps.Login;
 import com.example.babayaga.emploi_du_temps.R;
 import com.example.babayaga.emploi_du_temps.Session;
@@ -46,13 +47,13 @@ public class En_Samedi extends Fragment {
 
         En_SamediListView = (ListView) view.findViewById(R.id.en_samedi_list);
         mQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        //getdata();
+        getdata();
         return view;
     }
 
     public  void getdata(){
         String url="http://eniso.info/ws/core/wscript?s=Return(bean('core').getPluginsAPI())";
-        String url2="http://eniso.info/ws/core/wscript?s=Return(bean(%22academicPlanning%22).loadTeacherPlanning())";
+        String url2="http://eniso.info/ws/core/wscript?s=Return(bean(%22academicPlanning%22).loadTeacherPlanning("+En_Emploi_Activity.id+"))";
 
 
 
@@ -65,23 +66,38 @@ public class En_Samedi extends Fragment {
                          /*   Intent i = new Intent(getApplicationContext(),Groupes.class);
                             startActivity(i);*/
                             // JSONObject res =  response.getJSONObject("$1");
+                            ArrayList<Session> sesssionList = new ArrayList();
                             JSONObject i = response.getJSONObject("$1");
                             JSONArray days = i.getJSONArray("days");
                             JSONObject day= days.getJSONObject(5);
                             JSONArray hours = day.getJSONArray("hours");
-                            JSONObject s1 = hours.getJSONObject(0);
-                            String  hour = s1.getString("hour");
-                            String room = s1.getString("actor");
-                            String actor = s1.getString("actor");
-                            String subject = s1.getString("subject");
+                            JSONObject s1 ;
+                            String  hour;
+                            String room ;
+                            String actor ;
+                            String subject;
+                            for (int j = 0; j <5 ; j++) {
+                                s1 = hours.getJSONObject(j);
+                                hour = s1.getString("hour");
+                                actor = s1.getString("actor");
+                                if (hour.equals("Pause")&& actor.equals("")  ){
+                                    sesssionList.add(new Session(hour,"","","11:45-13:45"));
+                                }else if(actor.equals("") && !hour.equals("Pause")){
+                                    sesssionList.add(new Session("","","",hour));
 
-                            Session S1 = new Session(subject,actor,room,hour);
-                            ArrayList<Session> sesssionList = new ArrayList();
+                                }else{
+                                    room = s1.getString("room");
+                                    subject = s1.getString("subject");
+                                    sesssionList.add(new Session(subject,actor,room,hour));
+                                }
 
-                            SessionListAdapter adapter1 = new SessionListAdapter(getActivity(),R.layout.adapter_view_layout,sesssionList);
 
-                            En_SamediListView.setAdapter(adapter1);
-                            sesssionList.add(S1);
+
+                                SessionListAdapter adapter1 = new SessionListAdapter(getActivity(),R.layout.adapter_view_layout,sesssionList);
+
+                                En_SamediListView.setAdapter(adapter1);
+
+                            }
 
 
 

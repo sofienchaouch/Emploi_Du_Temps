@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
 
 
                 jsonParse();
-                Intent i = new Intent(getApplicationContext(),Gr_Activity.class);
+                Intent i = new Intent(getApplicationContext(),Main2Activity.class);
                 startActivity(i);
 
 
