@@ -40,9 +40,12 @@ public class Login extends AppCompatActivity {
     private String url1 ;
     private RequestQueue mQueue;
     public static String id;
-    EditText name;
-    EditText password;
+    private EditText name;
+    private EditText password;
+    public static String iconURL ;
+    public static String userFullTitle ;
     public static String sessionId ;
+    public static boolean online = false;
     ActionBar actionBar ;
 
 
@@ -83,15 +86,19 @@ public class Login extends AppCompatActivity {
                     String usft =res.getString("userFullTitle");
                     String lastAcesTime = res.getString("lastAccessTime");
                     String profileNames = res.getString("profileNames");
+                    userFullTitle = res.getString("userFullTitle");
+                    iconURL = res.getString("iconURL");
                     id = ustid;
                     sessionId = res.getString("sessionId");
-
-                    Toast.makeText(getApplicationContext(),"welcome "+profileNames,Toast.LENGTH_LONG).show();
+                    String name = res.getString("userFullName");
+                    online = true;
+                    Toast.makeText(getApplicationContext(),"welcome "+name,Toast.LENGTH_LONG).show();
 
                 } catch (JSONException e) {
                     try {
                         JSONObject resl =response.getJSONObject("$error");
                         String m = resl.getString("message");
+                        online = false;
                         Toast.makeText(getApplicationContext(),m,Toast.LENGTH_LONG).show();
 
 
@@ -109,6 +116,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),"no response",Toast.LENGTH_LONG).show();
+                        online = false;
 
                     }
                 }){
@@ -118,6 +126,7 @@ public class Login extends AppCompatActivity {
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
                 try {
+
                     Cache.Entry cacheEntry = HttpHeaderParser.parseCacheHeaders(response);
                     if (cacheEntry == null) {
                         cacheEntry = new Cache.Entry();
@@ -142,6 +151,7 @@ public class Login extends AppCompatActivity {
                     cacheEntry.responseHeaders = response.headers;
                     final String jsonString = new String(response.data,
                             HttpHeaderParser.parseCharset(response.headers));
+                    online = false;
                     return Response.success(new JSONObject(jsonString), cacheEntry);
                 } catch (UnsupportedEncodingException | JSONException e) {
                     return Response.error(new ParseError(e));

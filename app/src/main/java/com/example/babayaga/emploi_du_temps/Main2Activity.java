@@ -1,6 +1,7 @@
 package com.example.babayaga.emploi_du_temps;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.babayaga.emploi_du_temps.Emploi_Par_Enseignant.En_Days_Frag.En_Emploi_Activity;
 import com.example.babayaga.emploi_du_temps.Emploi_Par_Groupe.Gr_Activity;
@@ -21,7 +24,9 @@ import com.example.babayaga.emploi_du_temps.Mon_Emploi.mFragments_Days.Jeudi_Fra
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private TextView user ;
+    private TextView state ;
+    private ImageView img ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +43,22 @@ public class Main2Activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+
 
         getSupportActionBar().setTitle("Eniso.Info");
+
+        user = (TextView) headerView.findViewById(R.id.user_name);
+        user.setText(Login.userFullTitle);
+
+        //img = (ImageView) headerView.findViewById(R.id.imageView1);
+        state = headerView.findViewById(R.id.state);
+        /*if (Login.online) {
+            state.setText("En Ligne");
+            state.setTextColor(Color.rgb(0, 200, 119));
+
+        }*/
+
 
     }
 
