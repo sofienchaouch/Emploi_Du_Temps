@@ -6,40 +6,38 @@
 
     <item
         android:id="@+id/app_bar_search"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Search"
+        android:title="Chercher..."
         app:actionViewClass="android.widget.SearchView" />
     <group android:checkableBehavior="single"><![CDATA[
 
             />
 
+
         ]]>
         <item
-            android:id="@+id/nav_mur"
-            android:title="Mon Mur" />
-        <item
             android:id="@+id/nav_agenda"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@android:drawable/ic_menu_agenda"
             android:title="Agenda">
             <menu>
                 <item
                     android:id="@+id/mon_em_item"
+                    android:icon="@android:drawable/ic_menu_my_calendar"
                     android:title="Mon Emploi" />
                 <item
 
                     android:id="@+id/groupe_em_item"
-                    android:title="Emploi Par Groupe"
+                    android:icon="@android:drawable/ic_menu_my_calendar"
 
-                    />
+                    android:title="Emploi Par Groupe" />
                 <item
                     android:id="@+id/enseignant_emp_item"
+                    android:icon="@android:drawable/ic_menu_my_calendar"
                     android:title="Emploi par Enseignant" />
 
             </menu>
 
 
-
-         </item>
+        </item>
 
 
     </group>

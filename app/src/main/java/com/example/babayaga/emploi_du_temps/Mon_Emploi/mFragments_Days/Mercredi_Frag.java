@@ -1,5 +1,6 @@
 package com.example.babayaga.emploi_du_temps.Mon_Emploi.mFragments_Days;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,6 +32,7 @@ import java.util.Map;
 public class Mercredi_Frag extends Fragment {
     public RequestQueue mQueue;
     private Context context;
+    private SessionListAdapter adapter1;
     private ListView MercrediListView;
     private static final String TAG = "Mercredi_Frag";
     @Nullable
@@ -57,7 +59,9 @@ public class Mercredi_Frag extends Fragment {
         String url="http://eniso.info/ws/core/wscript?s=Return(bean('core').getPluginsAPI())";
         String url2="http://eniso.info/ws/core/wscript?s=Return(bean(%22calendars%22).findMergedUserPublicWeekCalendar("+Login.id+"))";
 
-
+        /*final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();*/
 
 
         JsonObjectRequest req = new JsonObjectRequest(com.android.volley.Request.Method.GET,url2,null,
@@ -104,10 +108,9 @@ public class Mercredi_Frag extends Fragment {
 
 
 
-                            SessionListAdapter adapter1 = new SessionListAdapter(getActivity(),R.layout.adapter_view_layout,sesssionList);
+                            adapter1 = new SessionListAdapter(getActivity(),R.layout.adapter_view_layout,sesssionList);
 
                             MercrediListView.setAdapter(adapter1);
-
 
 
 
@@ -119,9 +122,12 @@ public class Mercredi_Frag extends Fragment {
                                 String m = res1.getString("message");
                                 //data.append("\n"+m+"\n"+Login.sessionId+"\n"+Login.login+"\n"+Login.password);
                             } catch (JSONException a) {
-
+                               /* e.printStackTrace();
+                                progressDialog.dismiss();*/
                             }
                         }
+                        /*adapter1.notifyDataSetChanged();
+                        progressDialog.dismiss();*/
                     }
 
                 }, new com.android.volley.Response.ErrorListener() {

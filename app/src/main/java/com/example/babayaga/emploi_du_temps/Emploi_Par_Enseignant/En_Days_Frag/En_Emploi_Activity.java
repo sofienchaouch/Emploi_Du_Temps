@@ -1,8 +1,10 @@
 package com.example.babayaga.emploi_du_temps.Emploi_Par_Enseignant.En_Days_Frag;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -47,6 +49,7 @@ public class En_Emploi_Activity extends AppCompatActivity {
     public  static  String name;
 
     private ViewPager mViewPager;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class En_Emploi_Activity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.en_container);
         setupViewPager(mViewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.en_tabs);
+
 
 
         tabLayout.setupWithViewPager(mViewPager);

@@ -1,8 +1,11 @@
 package com.example.babayaga.emploi_du_temps.Mon_Emploi;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -29,7 +32,6 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity  {
         tabLayout.setupWithViewPager(mViewPager);
 
         getSupportActionBar().setTitle("Mon Emplois Temps");
+
 
 
 

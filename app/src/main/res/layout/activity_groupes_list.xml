@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".GroupesList">
+
 
     <ListView
         android:id="@+id/list_view_groupes"
         android:layout_width="match_parent"
-        android:layout_height="474dp"
+        android:layout_height="426dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="37dp">
+        android:layout_marginTop="85dp"
+        android:background="@color/background">
 
     </ListView>
 
@@ -27,9 +30,19 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
+        android:background="@color/background"
         android:gravity="center"
         android:text="Sélectionner un Groupe"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/searchView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="38dp" />
 
 </RelativeLayout>
