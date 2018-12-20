@@ -47,7 +47,7 @@ public class GroupesList extends AppCompatActivity {
     private Context context;
     private ListView list ;
     private String[] groupes = {"EI","IA","GT","Meca","GMP"};
-
+    private  MenuItem searchMenuItem ;
     private ArrayAdapter<String> adap;
     private SearchView searchView;
     private SessionListAdapter adapter1;
@@ -198,6 +198,7 @@ public class GroupesList extends AppCompatActivity {
         mQueue.start();
 
     }
+
 
 
 
