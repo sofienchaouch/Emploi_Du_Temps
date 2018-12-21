@@ -4,14 +4,18 @@ import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.ColorSpace;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.android.volley.AuthFailureError;
@@ -35,6 +39,9 @@ public class Enseignant_List extends AppCompatActivity {
     public RequestQueue mQueue;
     private Context context;
     private ListView list ;
+    private EditText sv;
+    Map<String,Integer> cleVal ;
+    private ArrayAdapter<String> adap;
     SessionListAdapter adapter1;
     android.support.v7.app.ActionBar actionBar;
     @Override
@@ -62,6 +69,9 @@ public class Enseignant_List extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
 
+                            final ArrayList<String> items= new ArrayList();
+                            cleVal = new HashMap <String, Integer>() ;
+
 
                             final ArrayList<Session> names = new ArrayList();
                             final ArrayList<Integer> ids = new ArrayList();
@@ -74,30 +84,73 @@ public class Enseignant_List extends AppCompatActivity {
                                 ob = i.getJSONObject(j);
                                 name = ob.getString("fullName");
                                 id = ob.getInt("id");
-                                names.add(new Session(name,"","",""));
+                                //names.add(new Session(name,"","",""));
+                                items.add(name);
                                 ids.add(id);
+                                cleVal.put(name,id);
 
                             }
 
 
+                            list = (ListView) findViewById(R.id.enseignants_list);
 
 
-                            adapter1 = new SessionListAdapter(getApplication(),R.layout.adapter_view_layout,names);
+                            //adapter1 = new SessionListAdapter(getApplication(),R.layout.adapter_view_layout,names);
 
-                            list.setAdapter(adapter1);
 
-                            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            sv=(EditText) findViewById(R.id.chercher_en);
+                            adap = new ArrayAdapter(getApplication(),R.layout.support_simple_spinner_dropdown_item,items);
+
+                            list.setAdapter(adap);
+
+
+
+                            sv.addTextChangedListener(new TextWatcher() {
+
                                 @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    int  item = ids.get(position);
-                                    //int vid = Integer.parseInt(item);
-                                    Intent i = new Intent(getApplicationContext(),En_Emploi_Activity.class);
-                                    i.putExtra("id",item);
-                                    i.putExtra("name",names.get(position).getSubject());
-                                    startActivity(i);
+                                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                    // Call back the Adapter with current character to Filter
+                                    adap.getFilter().filter(s.toString());
+
+                                }
+
+                                @Override
+                                public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+                                }
+
+                                @Override
+                                public void afterTextChanged(Editable s) {
                                 }
                             });
 
+
+
+                            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                                /*@Override
+                                public String getItem(int position) {
+                                    return items.get(position);
+                                }*/
+
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    String model=  adap.getItem(position);
+
+
+
+                                    //int  item = ids.get(position);
+                                    //int vid = Integer.parseInt(item);
+                                    //Model model=(Model)adap.getItem(position);
+                                    //String titlePosition = (String) adap.getItem(position);
+                                   // expense = expenseManager.getExpense(titlePosition);
+
+
+                                    Intent i = new Intent(getApplicationContext(),En_Emploi_Activity.class);
+                                    i.putExtra("id",cleVal.get(model));
+                                    i.putExtra("name",model);
+                                    startActivity(i);
+                                }
+                            });
 
 
                         } catch (JSONException e) {
@@ -110,7 +163,7 @@ public class Enseignant_List extends AppCompatActivity {
                                 progressDialog.dismiss();
                             }
                         }
-                        adapter1.notifyDataSetChanged();
+                        adap.notifyDataSetChanged();
                         progressDialog.dismiss();
 
                     }
@@ -155,3 +208,5 @@ public class Enseignant_List extends AppCompatActivity {
 
 
 }
+
+

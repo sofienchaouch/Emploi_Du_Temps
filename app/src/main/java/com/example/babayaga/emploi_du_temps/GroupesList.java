@@ -57,7 +57,7 @@ public class GroupesList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupes_list);
         mQueue = Volley.newRequestQueue(getApplicationContext());
-        list = (ListView) findViewById(R.id.list_view_groupes);
+
         getSupportActionBar().setTitle("Emplois Par Groupe");
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.barcolor)));
@@ -105,31 +105,35 @@ public class GroupesList extends AppCompatActivity {
                                 items.add(name);
                             }
 
+                            list = (ListView) findViewById(R.id.list_view_groupes);
 
 
-                            adapter1 = new SessionListAdapter(getApplication(),R.layout.adapter_view_layout,names);
+                            //adapter1 = new SessionListAdapter(getApplication(),R.layout.adapter_view_layout,names);
 
-                            list.setAdapter(adapter1);
+
+                            sv=(EditText) findViewById(R.id.searchView1);
+                            adap = new ArrayAdapter(getApplication(),R.layout.support_simple_spinner_dropdown_item,items);
+
+                            list.setAdapter(adap);
 
                             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    String item = names.get(position).getSubject();
+                                    String model=  adap.getItem(position);
+                                    //String item = names.get(position).getSubject();
                                     Intent i = new Intent(getApplicationContext(),Gr_Activity.class);
-                                    i.putExtra("name",item);
+                                    i.putExtra("name",model);
                                     startActivity(i);
                                 }
                             });
 
-                            sv=(EditText) findViewById(R.id.searchView1);
-                            adap = new ArrayAdapter(getApplication(),R.layout.adapter_view_layout,items);
 
                             sv.addTextChangedListener(new TextWatcher() {
 
                                 @Override
                                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                                     // Call back the Adapter with current character to Filter
-                                    adapter1.getFilter().filter(s.toString());
+                                    adap.getFilter().filter(s.toString());
                                 }
 
                                 @Override
@@ -164,7 +168,7 @@ public class GroupesList extends AppCompatActivity {
                                 progressDialog.dismiss();
                             }
                         }
-                        adapter1.notifyDataSetChanged();
+                        adap.notifyDataSetChanged();
                         progressDialog.dismiss();
 
                     }
