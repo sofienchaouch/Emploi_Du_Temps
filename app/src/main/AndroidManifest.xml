@@ -89,7 +89,8 @@
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GroupesList" />
-        <activity android:name=".Enseignant_List"></activity>
+        <activity android:name=".Enseignant_List" />
+        <activity android:name=".ActiveNow" />
     </application>
 
 </manifest>
